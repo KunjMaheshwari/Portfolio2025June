@@ -4,7 +4,7 @@ import { SectionHeading } from '../SectionHeading';
 
 export function AboutSection() {
   return (
-    <section id="about" className="px-4 py-20 sm:px-6 lg:px-8">
+    <section id="about" className="section-shell">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
           eyebrow="About"

@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { CustomCursor } from './components/CustomCursor';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/sections/HeroSection';
+import { EngineeringImpactSection } from './components/sections/EngineeringImpactSection';
 import { useGsapReveals } from './hooks/useGsapReveals';
 import { useLenis } from './hooks/useLenis';
 
@@ -39,8 +40,9 @@ function App() {
       </a>
       <CustomCursor />
       <Navbar isDark={isDark} onThemeToggle={() => setIsDark((value) => !value)} />
-      <main>
+      <main className="pb-28 lg:pb-0">
         <HeroSection />
+        <EngineeringImpactSection />
         <Suspense fallback={<div className="min-h-screen" aria-hidden="true" />}>
           <AboutSection />
           <ExperienceSection />

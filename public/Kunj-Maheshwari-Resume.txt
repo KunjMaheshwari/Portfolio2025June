@@ -1,0 +1,31 @@
+Kunj Maheshwari
+Software Engineer | AI Builder | Automation Engineer
+Pune, Maharashtra
+kunjm@outlook.com
+GitHub: https://github.com/KunjMaheshwari
+LinkedIn: https://www.linkedin.com/in/kunjm
+
+Summary
+Computer Science graduate from VIT Bhopal and Programmer Analyst Trainee at Cognizant. Focused on full-stack development, AI applications, test automation, and cloud technologies.
+
+Experience
+Programmer Analyst Trainee | Cognizant Technology Solutions | Aug 2025 - Present
+- Trained on Core Java, JDBC, advanced Java concepts, functional interfaces, lambdas, and stream APIs.
+- Developed and optimized enterprise-style Java applications while participating in sprint rituals and code reviews.
+- Debugged complex issues and improved system behavior through structured problem solving and peer collaboration.
+
+Analyst Trainee | Cognizant Technology Solutions | Apr 2025 - Jul 2025
+- Completed foundational training in software engineering, Java programming, and database management.
+- Built RESTful APIs and backend services with Java and MySQL through real-world training assignments.
+- Earned recognition for adaptability, quick learning, communication, and teamwork during onboarding.
+
+Selected Projects
+- The Utopia Resort Restaurant: Full-stack food delivery prototype with customer ordering, admin management, and a polished responsive interface.
+- Medicare Healthcare Schemes Portal: Healthcare schemes portal designed to make Indian government healthcare benefits easier to discover and compare.
+
+Skills
+Java, TypeScript, React, Node.js, Express.js, MongoDB, MySQL, AWS, Selenium, Framer Motion, TailwindCSS, Three.js
+
+Certifications
+- AWS Certified Cloud Practitioner
+- Google IT Support Professional Certificate

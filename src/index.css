@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -30,6 +30,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -39,7 +40,8 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.62), rgba(245,245,247,0) 520px),
+    radial-gradient(circle at top, rgba(10,132,255,0.08), transparent 32rem),
+    linear-gradient(180deg, rgba(255,255,255,0.74), rgba(245,245,247,0) 520px),
     rgb(var(--bg));
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
 }
@@ -48,7 +50,93 @@ body {
   background:
     radial-gradient(circle at 50% -10%, rgba(41,151,255,0.16), transparent 34rem),
     radial-gradient(circle at 85% 16%, rgba(191,90,242,0.12), transparent 30rem),
+    radial-gradient(circle at 22% 25%, rgba(48,209,88,0.08), transparent 22rem),
     rgb(var(--bg));
+}
+
+.font-display {
+  font-family: 'Inter Tight', Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', sans-serif;
+  letter-spacing: -0.065em;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 120px 120px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.52), transparent 92%);
+}
+
+.hero-noise {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.28), transparent 18%),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.16), transparent 15%),
+    radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.12), transparent 22%);
+  filter: blur(18px);
+}
+
+@keyframes float-gentle {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -16px, 0) scale(1.04);
+  }
+}
+
+@keyframes bob-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, 12px, 0);
+  }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 10s ease-in-out infinite;
+}
+
+.animate-bob-slow {
+  animation: bob-slow 7.5s ease-in-out infinite;
+}
+
+.section-shell {
+  padding: 5rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .section-shell {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-shell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.section-shell > .mx-auto {
+  width: 100%;
+}
+
+.section-shell > .mx-auto > [data-reveal] {
+  will-change: transform, opacity;
+}
+
+.section-shell > .mx-auto {
+  scroll-margin-top: 5.5rem;
 }
 
 ::selection {

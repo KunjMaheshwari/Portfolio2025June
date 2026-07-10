@@ -1,55 +1,379 @@
-import { FiCode, FiGitBranch, FiStar, FiTrendingUp } from 'react-icons/fi';
-import { activity } from '../../data/portfolio';
+import { useRef } from 'react';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { FaGithub } from 'react-icons/fa';
+import type { IconType } from 'react-icons';
+import { FiBookOpen, FiCode, FiGitBranch, FiRefreshCw, FiStar, FiTrendingUp, FiUsers, FiZap } from 'react-icons/fi';
+import { profile } from '../../data/portfolio';
+import { useCountUp } from '../../hooks/useCountUp';
+import { useDeveloperActivity } from '../../hooks/useDeveloperActivity';
 import { SectionHeading } from '../SectionHeading';
+import { cn } from '../../utils/cn';
 
-const codeStats = [
-  { icon: FiCode, label: 'Primary focus', value: 'Java + React systems' },
-  { icon: FiGitBranch, label: 'Workflow', value: 'GitHub-first delivery' },
-  { icon: FiTrendingUp, label: 'Signal', value: 'Consistent upskilling' },
-  { icon: FiStar, label: 'Strength', value: 'Automation mindset' },
-];
+type MetricCardProps = {
+  label: string;
+  value: number | null;
+  icon: IconType;
+  suffix?: string;
+  isInView: boolean;
+  delay?: number;
+};
+
+function MetricCard({ label, value, icon: Icon, suffix = '', isInView, delay = 0 }: MetricCardProps) {
+  const reduceMotion = useReducedMotion() ?? false;
+  const animatedValue = useCountUp({ end: value ?? 0, shouldStart: isInView && value !== null && !reduceMotion, delay });
+
+  return (
+    <motion.div
+      initial={reduceMotion ? false : { opacity: 0, y: 16, scale: 0.98 }}
+      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.65, ease: [0.2, 0.8, 0.2, 1], delay }}
+      whileHover={reduceMotion ? undefined : { y: -4 }}
+      className="rounded-[1.5rem] border border-white/10 bg-white/8 p-4 shadow-[0_18px_50px_rgba(2,6,23,0.1)] backdrop-blur-2xl dark:bg-white/6"
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted dark:text-white/46">{label}</p>
+          <p className="mt-3 font-display text-3xl font-semibold tracking-[-0.06em] text-ink dark:text-white sm:text-4xl">
+            {value === null ? '—' : `${animatedValue}${suffix}`}
+          </p>
+        </div>
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-stroke bg-surface/80 text-brand-blue dark:border-white/10 dark:bg-white/8">
+          <Icon aria-hidden={true} className="h-5 w-5" />
+        </span>
+      </div>
+    </motion.div>
+  );
+}
+
+function StatePill({ label, status }: { label: string; status: 'ready' | 'fallback' | 'loading' }) {
+  const tone =
+    status === 'ready'
+      ? 'text-system-green border-system-green/20 bg-system-green/10'
+      : status === 'fallback'
+        ? 'text-brand-blue border-brand-blue/20 bg-brand-blue/10'
+        : 'text-muted border-stroke bg-elevated dark:border-white/10 dark:bg-white/8';
+
+  return (
+    <span className={cn('inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em]', tone)}>
+      <span className="h-1.5 w-1.5 rounded-full bg-current" />
+      {label}
+    </span>
+  );
+}
+
+function GraphFallback() {
+  const cells = Array.from({ length: 84 }, (_, index) => (index * 13) % 5);
+
+  return (
+    <div className="grid grid-cols-12 sm:grid-cols-14 gap-1.5 overflow-hidden rounded-[1.6rem] border border-stroke bg-surface/78 p-4 dark:border-white/10 dark:bg-white/6">
+      {cells.map((level, index) => (
+        <span
+          key={index}
+          className={cn(
+            'aspect-square rounded-[4px]',
+            level === 0 && 'bg-ink/5 dark:bg-white/6',
+            level === 1 && 'bg-brand-blue/20 dark:bg-brand-blue/16',
+            level === 2 && 'bg-brand-blue/40 dark:bg-brand-blue/30',
+            level === 3 && 'bg-brand-blue/65 dark:bg-brand-blue/50',
+            level === 4 && 'bg-brand-blue dark:bg-brand-blue/80',
+          )}
+        />
+      ))}
+    </div>
+  );
+}
+
+function GraphPanel({ svg, status }: { svg: string | null; status: 'ready' | 'fallback' | 'loading' }) {
+  return (
+    <div className="rounded-[1.8rem] border border-stroke bg-surface/78 p-4 shadow-[0_18px_50px_rgba(5,5,7,0.08)] backdrop-blur-2xl dark:border-white/10 dark:bg-white/6">
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-blue">Contribution graph</p>
+          <p className="mt-2 text-sm text-muted dark:text-white/62">Public GitHub activity over the last year.</p>
+        </div>
+        <StatePill label={status} status={status} />
+      </div>
+      {svg ? (
+        <div
+          className="overflow-hidden rounded-[1.6rem] border border-stroke bg-white/70 p-4 dark:border-white/10 dark:bg-black/10 [&_svg]:h-auto [&_svg]:w-full [&_svg]:max-w-none"
+          aria-hidden="true"
+          dangerouslySetInnerHTML={{ __html: svg }}
+        />
+      ) : (
+        <GraphFallback />
+      )}
+    </div>
+  );
+}
+
+function LeetCodeBar({ label, value, total, isInView, delay }: { label: string; value: number | null; total: number; isInView: boolean; delay: number }) {
+  const reduceMotion = useReducedMotion() ?? false;
+  const animatedValue = useCountUp({ end: value ?? 0, shouldStart: isInView && value !== null && !reduceMotion, delay });
+  const width = value === null ? '0%' : `${Math.max(8, Math.round((animatedValue / Math.max(total, 1)) * 100))}%`;
+
+  return (
+    <div>
+      <div className="flex items-center justify-between gap-3 text-sm">
+        <span className="text-muted dark:text-white/62">{label}</span>
+        <span className="font-semibold text-ink dark:text-white">{value === null ? '—' : animatedValue}</span>
+      </div>
+      <div className="mt-2 h-2 overflow-hidden rounded-full bg-elevated dark:bg-white/8">
+        <motion.div
+          initial={false}
+          animate={{ width }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 1.1, ease: [0.2, 0.8, 0.2, 1], delay }}
+          className="h-full rounded-full bg-[linear-gradient(90deg,#0A84FF,#BF5AF2,#30D158)]"
+        />
+      </div>
+    </div>
+  );
+}
 
 export function ActivitySection() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-20% 0px -15% 0px' });
+  const reduceMotion = useReducedMotion() ?? false;
+  const activity = useDeveloperActivity();
+
   return (
-    <section id="activity" className="px-4 py-20 sm:px-6 lg:px-8">
+    <section id="activity" ref={sectionRef} className="section-shell">
       <div className="mx-auto max-w-7xl">
         <SectionHeading
-          eyebrow="Coding activity"
-          title="Readable public signal without vanity metrics."
-          description="A clean overview of engineering activity, project presence, and professional channels."
+          eyebrow="Developer Activity"
+          title="Live engineering signal, presented like a product analytics dashboard."
+          description="GitHub and LeetCode data is fetched automatically where possible, with clean fallback states when an API is unavailable."
         />
 
-        <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-          <div data-reveal className="rounded-[2rem] border border-stroke bg-ink p-6 text-white shadow-soft dark:border-white/10 dark:bg-white dark:text-black sm:p-8">
-            <h3 className="text-2xl font-semibold tracking-[-0.035em]">Engineering signal</h3>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              {codeStats.map((stat) => (
-                <div key={stat.label} className="rounded-3xl border border-white/12 bg-white/8 p-5 dark:border-black/10 dark:bg-black/[0.04]">
-                  <stat.icon className="h-5 w-5 text-brand-blue" aria-hidden="true" />
-                  <p className="mt-5 text-xs font-bold uppercase tracking-[0.16em] opacity-55">{stat.label}</p>
-                  <p className="mt-2 font-semibold">{stat.value}</p>
-                </div>
-              ))}
-            </div>
+        {/* Experience Timeline */}
+        <div className="mb-8 rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.94] to-white/[0.76] p-8 shadow-[0_30px_95px_rgba(2,6,23,0.1)] backdrop-blur-xl dark:from-black/[0.16] dark:to-black/[0.12]">
+          <div className="flex items-center justify-between gap-4 mb-8">
+            <h3 className="text-lg font-semibold tracking-[0.05em] text-brand-blue uppercase">Experience Timeline</h3>
+            <span className="rounded-full border border-stroke bg-surface/72 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-muted dark:border-white/10 dark:bg-white/8 dark:text-white/56">Live data</span>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2">
-            {activity.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                data-reveal
-                className="group rounded-[2rem] border border-stroke bg-surface p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:bg-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue dark:border-white/10 dark:bg-white/7 dark:hover:bg-white/10 sm:p-8"
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.85, ease: [0.2, 0.8, 0.2, 1] }}
+          >
+            <div className="relative">
+              {/* Vertical Line */}
+              <svg className="absolute left-4 top-3 h-[calc(100%-6rem)] w-px -z-10 bg-gradient-to-b from-brand-blue via-brand-purple to-system-green" />
+
+              {experience.map((exp, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15, duration: 0.7 }}
+                >
+                  <div className="relative flex items-start gap-6 rounded-[2rem] border border-stroke bg-white/[0.84] p-6 shadow-lg backdrop-blur-xl dark:border-black/15 dark:bg-black/[0.08]">
+                    {/* Timeline Dot */}
+                    <div className="absolute left-3 top-7 flex h-6 w-6 items-center justify-center rounded-full border-[2px] bg-gradient-to-br from-brand-blue to-brand-purple shadow-md ring-4 ring-white dark:ring-black/10" />
+
+                    <div className="flex-1">
+                      <span className="mb-3 inline-flex min-h-7 items-center gap-2 rounded-full border border-stroke bg-surface/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] dark:border-white/10 dark:bg-white/8">
+                        {exp.period}
+                      </span>
+
+                      <h4 className="text-xl font-bold tracking-[-0.05em] text-ink">{exp.title}</h4>
+                      <p className="mt-1 text-sm font-medium text-muted dark:text-white/62">{exp.company}, {exp.location}</p>
+
+                      <div className="mt-5 flex flex-wrap gap-3">
+                        {exp.tags.map((tag, i) => (
+                          <span key={i} className="rounded-full border border-stroke bg-surface/74 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] dark:border-white/8 dark:bg-black/[0.06]">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <ul className="mt-5 space-y-3">
+                        {exp.bullets.map((bullet, i) => (
+                          <li key={i} className="flex items-start gap-3 text-sm leading-6 text-muted dark:text-white/70">
+                            <FiTrendingUp className="h-4 w-4 shrink-0 text-brand-blue" aria-hidden="true" />
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Progress Bar */}
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.2, duration: 1.4, ease: 'power3.out' }}
+                      className="h-px w-full rounded-[999px] bg-gradient-to-r from-brand-blue via-brand-purple to-system-green"
+                    />
+
+                    {/* Completion Dot */}
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full border-[3px] bg-white dark:border-black/10">
+                      <FiTrendingUp className="h-4 w-4 text-brand-blue" aria-hidden="true" />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Education Section */}
+            {education.map((edu, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: (index + experience.length) * 0.15, duration: 0.7 }}
               >
-                <item.icon className="h-9 w-9 text-brand-blue transition group-hover:scale-110" aria-hidden="true" />
-                <p className="mt-10 text-sm font-semibold text-brand-blue">{item.label}</p>
-                <h3 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-ink dark:text-white">{item.value}</h3>
-                <p className="mt-4 text-sm leading-6 text-muted dark:text-white/62">{item.description}</p>
-              </a>
+                <div className="relative flex items-start gap-6 rounded-[2rem] border border-stroke bg-white/[0.84] p-6 shadow-lg backdrop-blur-xl dark:border-black/15 dark:bg-black/[0.08]">
+                  {/* Timeline Dot */}
+                  <div className="absolute left-3 top-7 flex h-6 w-6 items-center justify-center rounded-full border-[2px] bg-gradient-to-br from-brand-purple to-system-green shadow-md ring-4 ring-white dark:ring-black/10" />
+
+                  <div className="flex-1">
+                    <span className="mb-3 inline-flex min-h-7 items-center gap-2 rounded-full border border-stroke bg-surface/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] dark:border-white/10 dark:bg-white/8">
+                      {edu.period}
+                    </span>
+
+                    <h4 className="text-xl font-bold tracking-[-0.05em] text-ink">{edu.degree}</h4>
+                    <p className="mt-1 text-sm font-medium text-muted dark:text-white/62">{edu.school}, CGPA {edu.detail.split(' ')[1]}</p>
+
+                    <div className="mt-5 flex items-center gap-3 rounded-[1.8rem] border border-stroke bg-surface/74 p-4">
+                      <FiStar className="h-5 w-5 text-brand-blue" aria-hidden="true" />
+                      <span className="text-sm font-semibold tracking-wide dark:text-white/80">{edu.detail}</span>
+                    </div>
+
+                    {/* Progress Bar */}
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: (index + experience.length) * 0.2, duration: 1.4, ease: 'power3.out' }}
+                      className="h-px w-full rounded-[999px] bg-gradient-to-r from-brand-purple via-system-green to-transparent"
+                    />
+
+                    {/* Completion Dot */}
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full border-[3px] bg-white dark:border-black/10">
+                      <FiStar className="h-4 w-4 text-brand-purple" aria-hidden="true" />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             ))}
-          </div>
+
+            {/* Auto-sync Banner */}
+            <div className="mt-8 rounded-[1.6rem] border border-stroke bg-surface/72 px-5 py-4 text-sm shadow-md backdrop-blur-xl dark:border-white/10 dark:bg-black/[0.06]">
+              <span>Auto-sync enabled for GitHub and LeetCode public signals.</span>
+              <div className="mt-3 flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted dark:text-white/54">
+                <FiRefreshCw aria-hidden="true" />
+                {activity.lastUpdated ? `Last updated ${new Date(activity.lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : 'Syncing live data'}
+              </div>
+            </div>
+
+          </motion.div>
+        </div>
+
+        <div className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
+          <motion.article
+            data-reveal
+            initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.98 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
+            whileHover={reduceMotion ? undefined : { y: -6 }}
+            className="relative overflow-hidden rounded-[2.3rem] border border-white/10 bg-white/8 p-6 shadow-[0_28px_90px_rgba(2,6,23,0.12)] backdrop-blur-2xl dark:bg-white/6 dark:shadow-[0_28px_90px_rgba(0,0,0,0.34)] sm:p-7"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(10,132,255,0.16),transparent_28%),radial-gradient(circle_at_85%_0%,rgba(191,90,242,0.14),transparent_22%),linear-gradient(135deg,rgba(255,255,255,0.1),transparent_36%,rgba(255,255,255,0.04)_74%,transparent)]" />
+            <div className="relative">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <StatePill label={activity.github.status} status={activity.github.status} />
+                  <div className="mt-5 flex items-start gap-4">
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-stroke bg-surface/80 text-brand-blue dark:border-white/10 dark:bg-white/8">
+                      <FaGithub aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <h3 className="text-3xl font-semibold tracking-[-0.06em] text-ink dark:text-white">GitHub</h3>
+                      <p className="mt-2 max-w-xl text-sm leading-6 text-muted dark:text-white/62">
+                        Public repository signal, followers, stars, and a live contribution graph.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-full border border-stroke bg-elevated px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-muted dark:border-white/10 dark:bg-white/8 dark:text-white/50">
+                  {profile.githubUsername}
+                </div>
+              </div>
+
+              <div className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                <MetricCard label="Repositories" value={activity.github.repoCount} icon={FiBookOpen} isInView={isInView} delay={0.04} />
+                <MetricCard label="Followers" value={activity.github.followers} icon={FiUsers} isInView={isInView} delay={0.08} />
+                <MetricCard label="Stars" value={activity.github.stars} icon={FiStar} isInView={isInView} delay={0.12} />
+                <MetricCard label="Contributions" value={activity.github.contributions} icon={FiGitBranch} isInView={isInView} delay={0.16} />
+              </div>
+
+              <div className="mt-6">
+                <GraphPanel svg={activity.github.contributionSvg} status={activity.github.status} />
+              </div>
+
+              {activity.github.message ? (
+                <div className="mt-4 rounded-[1.4rem] border border-stroke bg-surface/80 px-4 py-3 text-sm text-muted dark:border-white/10 dark:bg-white/6 dark:text-white/62">
+                  {activity.github.message}
+                </div>
+              ) : null}
+            </div>
+          </motion.article>
+
+          <motion.article
+            data-reveal
+            initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.98 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1], delay: 0.08 }}
+            whileHover={reduceMotion ? undefined : { y: -6 }}
+            className="relative overflow-hidden rounded-[2.3rem] border border-white/10 bg-white/8 p-6 shadow-[0_28px_90px_rgba(2,6,23,0.12)] backdrop-blur-2xl dark:bg-white/6 dark:shadow-[0_28px_90px_rgba(0,0,0,0.34)] sm:p-7"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,rgba(10,132,255,0.16),transparent_28%),radial-gradient(circle_at_18%_0%,rgba(48,209,88,0.14),transparent_22%),linear-gradient(135deg,rgba(255,255,255,0.1),transparent_36%,rgba(255,255,255,0.04)_74%,transparent)]" />
+            <div className="relative">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <StatePill label={activity.leetcode.status} status={activity.leetcode.status} />
+                  <div className="mt-5 flex items-start gap-4">
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-stroke bg-surface/80 text-brand-blue dark:border-white/10 dark:bg-white/8">
+                      <FiCode aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <h3 className="text-3xl font-semibold tracking-[-0.06em] text-ink dark:text-white">LeetCode</h3>
+                      <p className="mt-2 max-w-xl text-sm leading-6 text-muted dark:text-white/62">
+                        Problems solved, difficulty breakdown, and contest rating when available.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-full border border-stroke bg-elevated px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-muted dark:border-white/10 dark:bg-white/8 dark:text-white/50">
+                  {profile.leetcodeUsername}
+                </div>
+              </div>
+
+              <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                <MetricCard label="Problems solved" value={activity.leetcode.solved} icon={FiTrendingUp} isInView={isInView} delay={0.04} />
+                <MetricCard label="Contest rating" value={activity.leetcode.contestRating} icon={FiZap} isInView={isInView} delay={0.08} />
+              </div>
+
+              <div className="mt-6 grid gap-4 rounded-[1.8rem] border border-stroke bg-surface/78 p-5 dark:border-white/10 dark:bg-white/6">
+                <LeetCodeBar label="Easy" value={activity.leetcode.easy} total={activity.leetcode.solved ?? 1} isInView={isInView} delay={0.03} />
+                <LeetCodeBar label="Medium" value={activity.leetcode.medium} total={activity.leetcode.solved ?? 1} isInView={isInView} delay={0.06} />
+                <LeetCodeBar label="Hard" value={activity.leetcode.hard} total={activity.leetcode.solved ?? 1} isInView={isInView} delay={0.09} />
+              </div>
+
+              {activity.leetcode.message ? (
+                <div className="mt-4 rounded-[1.4rem] border border-stroke bg-surface/80 px-4 py-3 text-sm text-muted dark:border-white/10 dark:bg-white/6 dark:text-white/62">
+                  {activity.leetcode.message}
+                </div>
+              ) : null}
+            </div>
+          </motion.article>
         </div>
       </div>
     </section>

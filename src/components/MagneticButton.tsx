@@ -1,6 +1,6 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, MouseEvent } from 'react';
 import { useRef } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
 import { cn } from '../utils/cn';
 
 type BaseProps = {
@@ -16,9 +16,9 @@ export function MagneticButton(props: ButtonProps | AnchorProps) {
   const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
   const x = useSpring(useMotionValue(0), { stiffness: 180, damping: 18, mass: 0.4 });
   const y = useSpring(useMotionValue(0), { stiffness: 180, damping: 18, mass: 0.4 });
+  const reduceMotion = useReducedMotion() ?? false;
 
   const onMouseMove = (event: MouseEvent) => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion || !ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
