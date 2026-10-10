@@ -1,0 +1,406 @@
+- generic [ref=f1e3]:
+  - banner [ref=f1e4]:
+    - navigation "Primary navigation" [ref=f1e5]:
+      - link "KM Kunj Maheshwari" [ref=f1e6] [cursor=pointer]:
+        - /url: "#home"
+        - generic [ref=f1e7]: KM
+        - generic [ref=f1e8]: Kunj Maheshwari
+      - generic [ref=f1e556]:
+        - link "Work" [ref=f1e557] [cursor=pointer]:
+          - /url: "#work"
+        - link "Engineering" [ref=f1e558] [cursor=pointer]:
+          - /url: "#engineering"
+        - link "Credentials" [ref=f1e559] [cursor=pointer]:
+          - /url: "#credentials"
+        - link "About" [ref=f1e560] [cursor=pointer]:
+          - /url: "#about"
+        - link "Contact" [ref=f1e561] [cursor=pointer]:
+          - /url: "#contact"
+      - button "Switch to dark theme" [ref=f1e10] [cursor=pointer]
+  - main [ref=f1e15]:
+    - generic [ref=f1e16]:
+      - generic [ref=f1e17]:
+        - generic [ref=f1e18]:
+          - paragraph [ref=f1e19]: AI ENGINEERING · BACKEND SYSTEMS · SOFTWARE QUALITY
+          - heading [level=1] [ref=f1e20]:
+            - text: Build intelligent systems.
+            - emphasis [ref=f1e21]: Engineer them to last.
+          - paragraph [ref=f1e22]: I’m Kunj Maheshwari, a software engineer focused on AI-powered applications, backend development, and reliable software systems. I build practical solutions with modern AI technologies, robust APIs, and automated testing.
+          - generic [ref=f1e23]:
+            - link "Explore My Work" [ref=f1e24] [cursor=pointer]:
+              - /url: "#work"
+            - link "Get in Touch" [ref=f1e30] [cursor=pointer]:
+              - /url: "#contact"
+        - img "Abstract diagram of an AI application system" [ref=f1e37]:
+          - generic [ref=f1e40]:
+            - generic [ref=f1e41]: AI
+            - generic [ref=f1e42]: MODEL LAYER
+          - generic [ref=f1e43]:
+            - generic [ref=f1e44]: API
+            - generic [ref=f1e45]: ROUTES
+          - generic [ref=f1e46]:
+            - generic [ref=f1e47]: DATA
+            - generic [ref=f1e48]: STORAGE
+          - generic [ref=f1e49]: TESTED
+          - generic [ref=f1e562]: INPUT → REASONING → OUTPUT
+          - generic [ref=f1e563]: OBSERVABLE · REPEATABLE · HUMAN
+      - generic [ref=f1e53]:
+        - generic [ref=f1e54]: Based in Pune, Maharashtra
+        - generic [ref=f1e55]: Available for thoughtful work
+    - generic [ref=f1e58]:
+      - generic [ref=f1e59]:
+        - paragraph [ref=f1e60]: Selected work
+        - heading "Products built with a point of view." [level=2] [ref=f1e61]
+        - paragraph [ref=f1e62]: A few projects where engineering decisions, useful interfaces, and real-world constraints meet.
+      - generic [ref=f1e63]:
+        - article [ref=f1e64]:
+          - generic [ref=f1e65]:
+            - paragraph [ref=f1e66]: AI application
+            - heading "Regen-AI" [level=3] [ref=f1e67]
+            - paragraph [ref=f1e68]: A streaming AI chat application built around real-world concerns rather than a prompt-only demo.
+            - generic [ref=f1e69]:
+              - generic [ref=f1e70]:
+                - text: Problem
+                - paragraph [ref=f1e71]: "AI chat needs more than model access: conversations need to persist, responses need to stream, and the application needs a reliable product foundation."
+              - generic [ref=f1e72]:
+                - text: Approach
+                - paragraph [ref=f1e73]: Built a Next.js App Router application with OpenRouter model access, token-by-token streaming, authentication, and conversation persistence through Prisma and PostgreSQL.
+            - generic [ref=f1e74]:
+              - generic [ref=f1e75]: Next.js
+              - generic [ref=f1e76]: OpenRouter
+              - generic [ref=f1e77]: Prisma
+              - generic [ref=f1e78]: PostgreSQL
+              - generic [ref=f1e79]: Playwright
+            - generic [ref=f1e80]:
+              - link "View on GitHub" [ref=f1e81] [cursor=pointer]:
+                - /url: https://github.com/KunjMaheshwari/Regen-AI
+              - link "Live demo" [ref=f1e84] [cursor=pointer]:
+                - /url: https://regenai-ten.vercel.app
+          - generic [ref=f1e90]:
+            - img "Regen-AI project logo" [ref=f1e91]
+            - generic [ref=f1e92]: Verified repository asset
+        - article [ref=f1e93]:
+          - generic [ref=f1e94]:
+            - paragraph [ref=f1e95]: AI learning platform
+            - heading "LogicK" [level=3] [ref=f1e96]
+            - paragraph [ref=f1e97]: An interactive problem-solving platform designed to strengthen logical reasoning through structured challenges.
+            - generic [ref=f1e98]:
+              - generic [ref=f1e99]:
+                - text: Problem
+                - paragraph [ref=f1e100]: Problem-solving practice can become difficult to navigate when challenges, feedback, and the surrounding learning experience are disconnected.
+              - generic [ref=f1e101]:
+                - text: Approach
+                - paragraph [ref=f1e102]: Developed a Next.js application with an AI-oriented stack that includes Google Gemini API, Prisma ORM, Docker, E2B sandboxing, and Inngest.
+            - generic [ref=f1e103]:
+              - generic [ref=f1e104]: Next.js
+              - generic [ref=f1e105]: Google Gemini API
+              - generic [ref=f1e106]: Prisma ORM
+              - generic [ref=f1e107]: Docker
+              - generic [ref=f1e108]: E2B
+              - generic [ref=f1e109]: Inngest
+            - link "View on GitHub" [ref=f1e111] [cursor=pointer]:
+              - /url: https://github.com/KunjMaheshwari/LogicK
+          - generic [ref=f1e116]:
+            - img "LogicK project logo" [ref=f1e117]
+            - generic [ref=f1e118]: Verified repository asset
+        - article [ref=f1e119]:
+          - generic [ref=f1e120]:
+            - paragraph [ref=f1e121]: Software quality
+            - heading "Playwright Automation" [level=3] [ref=f1e122]
+            - paragraph [ref=f1e123]: A scalable Playwright automation framework covering end-to-end testing, locator strategies, reporting, and CI/CD.
+            - generic [ref=f1e124]:
+              - generic [ref=f1e125]:
+                - text: Problem
+                - paragraph [ref=f1e126]: Reliable browser automation depends on maintainable test structure, useful reporting, and repeatable execution in development and CI.
+              - generic [ref=f1e127]:
+                - text: Approach
+                - paragraph [ref=f1e128]: Organized a JavaScript Playwright framework around pages, specs, tests, Postman assets, Allure reporting, and GitHub Actions workflows.
+            - generic [ref=f1e129]:
+              - generic [ref=f1e130]: JavaScript
+              - generic [ref=f1e131]: Playwright
+              - generic [ref=f1e132]: Allure Reports
+              - generic [ref=f1e133]: GitHub Actions
+              - generic [ref=f1e134]: Postman
+            - link "View on GitHub" [ref=f1e136] [cursor=pointer]:
+              - /url: https://github.com/KunjMaheshwari/Playwright-Automation
+          - img "Abstract Playwright test execution visual" [ref=f1e140]:
+            - generic [ref=f1e141]:
+              - generic [ref=f1e142]: Software quality
+              - generic [ref=f1e147]:
+                - text: JavaScript
+                - strong [ref=f1e148]: Test every<br />important path.
+                - generic [ref=f1e149]: RUNNING IN CI
+        - article [ref=f1e154]:
+          - generic [ref=f1e155]:
+            - paragraph [ref=f1e156]: Browser automation
+            - heading "Naukri Resume Automation" [level=3] [ref=f1e157]
+            - paragraph [ref=f1e158]: A Node.js automation script that signs in to Naukri and uploads the latest resume for a personal productivity workflow.
+            - generic [ref=f1e159]:
+              - generic [ref=f1e160]:
+                - text: Problem
+                - paragraph [ref=f1e161]: Refreshing a resume profile manually is repetitive and easy to forget when the source document changes.
+              - generic [ref=f1e162]:
+                - text: Approach
+                - paragraph [ref=f1e163]: Implemented a Puppeteer flow with environment-based credentials, human-like typing delays, checkpoint screenshots, validation scripts, and explicit exit codes.
+            - generic [ref=f1e164]:
+              - generic [ref=f1e165]: Node.js
+              - generic [ref=f1e166]: Puppeteer
+              - generic [ref=f1e167]: dotenv
+            - link "View on GitHub" [ref=f1e169] [cursor=pointer]:
+              - /url: https://github.com/KunjMaheshwari/Naukri-Resume-Automation
+          - img "Abstract browser automation visual" [ref=f1e173]:
+            - generic [ref=f1e174]:
+              - generic [ref=f1e175]: Browser automation
+              - generic [ref=f1e180]:
+                - text: Node.js
+                - strong [ref=f1e181]: Automate the<br />work between.
+                - generic [ref=f1e182]: READY TO RUN
+    - generic [ref=f1e188]:
+      - generic [ref=f1e189]:
+        - paragraph [ref=f1e190]: Engineering capabilities
+        - heading "The work behind the interface." [level=2] [ref=f1e191]
+        - paragraph [ref=f1e192]: I move comfortably from a model-powered workflow to the API beneath it, then make sure the whole system can be trusted.
+      - generic [ref=f1e193]:
+        - article [ref=f1e194]:
+          - text: "01"
+          - heading "AI Engineering" [level=3] [ref=f1e195]
+          - paragraph [ref=f1e196]: Building practical AI applications around real user workflows, with attention to useful outputs, persistence, and product quality.
+        - article [ref=f1e198]:
+          - text: "02"
+          - heading "Backend Development" [level=3] [ref=f1e199]
+          - paragraph [ref=f1e200]: Designing clear APIs and full-stack systems with Java, Node.js, Express, databases, and an eye for maintainable boundaries.
+        - article [ref=f1e202]:
+          - text: "03"
+          - heading "Automation & Quality" [level=3] [ref=f1e203]
+          - paragraph [ref=f1e204]: Creating repeatable quality systems with Selenium, TestNG, Playwright, Page Object Model, and readable reporting.
+      - generic [ref=f1e325]:
+        - generic [ref=f1e326]:
+          - paragraph [ref=f1e327]: AI engineering
+          - generic [ref=f1e328]:
+            - generic [ref=f1e329]: LLM integration
+            - generic [ref=f1e330]: Generative AI applications
+            - generic [ref=f1e331]: Prompt & context engineering
+            - generic [ref=f1e332]: AI agents
+            - generic [ref=f1e333]: Google Gemini
+            - generic [ref=f1e334]: OpenRouter
+        - generic [ref=f1e335]:
+          - paragraph [ref=f1e336]: Backend development
+          - generic [ref=f1e337]:
+            - generic [ref=f1e338]: JavaScript
+            - generic [ref=f1e339]: Node.js
+            - generic [ref=f1e340]: Express.js
+            - generic [ref=f1e341]: REST APIs
+            - generic [ref=f1e342]: PostgreSQL
+            - generic [ref=f1e343]: MongoDB
+            - generic [ref=f1e344]: Prisma ORM
+            - generic [ref=f1e345]: Java & SQL
+        - generic [ref=f1e346]:
+          - paragraph [ref=f1e347]: Frontend
+          - generic [ref=f1e348]:
+            - generic [ref=f1e349]: React
+            - generic [ref=f1e350]: Next.js
+            - generic [ref=f1e351]: HTML
+            - generic [ref=f1e352]: CSS
+            - generic [ref=f1e353]: Tailwind CSS
+        - generic [ref=f1e354]:
+          - paragraph [ref=f1e355]: Automation & quality
+          - generic [ref=f1e356]:
+            - generic [ref=f1e357]: Java
+            - generic [ref=f1e358]: Selenium WebDriver
+            - generic [ref=f1e359]: TestNG
+            - generic [ref=f1e360]: Playwright
+            - generic [ref=f1e361]: Cucumber
+            - generic [ref=f1e362]: Regression testing
+        - generic [ref=f1e363]:
+          - paragraph [ref=f1e364]: Cloud & tools
+          - generic [ref=f1e365]:
+            - generic [ref=f1e366]: AWS fundamentals
+            - generic [ref=f1e367]: Git & GitHub
+            - generic [ref=f1e368]: Docker
+            - generic [ref=f1e369]: CI/CD workflows
+    - generic [ref=f1e207]:
+      - generic [ref=f1e208]:
+        - paragraph [ref=f1e209]: Engineering philosophy
+        - heading "Good software is a sequence of good decisions." [level=2] [ref=f1e210]
+        - paragraph [ref=f1e211]: "The process stays simple: understand the problem, make the system legible, build deliberately, and validate what matters."
+      - generic [ref=f1e212]:
+        - generic [ref=f1e213]:
+          - generic [ref=f1e214]: "01"
+          - heading "Understand" [level=3] [ref=f1e215]
+          - paragraph [ref=f1e216]: Start with the people, constraints, and outcomes.
+        - generic [ref=f1e217]:
+          - generic [ref=f1e218]: "02"
+          - heading "Architect" [level=3] [ref=f1e219]
+          - paragraph [ref=f1e220]: Choose boundaries that make change safer.
+        - generic [ref=f1e221]:
+          - generic [ref=f1e222]: "03"
+          - heading "Build" [level=3] [ref=f1e223]
+          - paragraph [ref=f1e224]: Turn the model into useful, maintainable software.
+        - generic [ref=f1e225]:
+          - generic [ref=f1e226]: "04"
+          - heading "Validate" [level=3] [ref=f1e227]
+          - paragraph [ref=f1e228]: Use automation and feedback to earn confidence.
+    - generic [ref=f1e230]:
+      - generic [ref=f1e231]:
+        - paragraph [ref=f1e232]: Experience
+        - heading "Enterprise discipline, applied every day." [level=2] [ref=f1e233]
+        - paragraph [ref=f1e234]: A progression through quality engineering and automation at Cognizant, from internship foundations to enterprise application automation.
+      - generic "Cognizant experience timeline" [ref=f1e370]:
+        - generic [ref=f1e371]: Cognizant · 2025 — Present
+        - list [ref=f1e374]:
+          - listitem [ref=f1e375]:
+            - generic [aria-hidden] [ref=f1e376]: "01"
+            - generic [ref=f1e377]:
+              - generic [ref=f1e379]:
+                - paragraph [ref=f1e380]: August 2026 - Present
+                - heading "Programmer Analyst" [level=3] [ref=f1e381]
+                - paragraph [ref=f1e382]: Full-time · Pune City, Maharashtra, India · On-site
+              - list [ref=f1e383]:
+                - listitem [ref=f1e384]: Develop and maintain Java-based automation solutions for Oracle EPM applications including EDMCS, EPBCS, FCCS, PCMCS, and NR using Selenium WebDriver, Playwright, and CRAFT.
+                - listitem [ref=f1e387]: Design reusable workflows with Page Object Model, data-driven testing, explicit waits, and structured exception handling for maintainable regression coverage.
+                - listitem [ref=f1e390]: Enhance framework components and automation infrastructure, troubleshoot enterprise workflows, and adapt solutions to changing application behavior.
+                - listitem [ref=f1e393]: Work with Git, Maven, and Jenkins in automation development and CI/CD workflows while collaborating with QA and engineering stakeholders.
+              - generic "Programmer Analyst skills" [ref=f1e396]:
+                - generic [ref=f1e397]: CRAFT
+                - generic [ref=f1e398]: Selenium WebDriver
+                - generic [ref=f1e399]: Playwright
+                - generic [ref=f1e400]: Java
+                - generic [ref=f1e401]: Jenkins
+          - listitem [ref=f1e402]:
+            - generic [aria-hidden] [ref=f1e403]: "02"
+            - generic [ref=f1e404]:
+              - generic [ref=f1e406]:
+                - paragraph [ref=f1e407]: August 2025 - August 2026
+                - heading "Programmer Analyst Trainee" [level=3] [ref=f1e408]
+                - paragraph [ref=f1e409]: Full-time · Pune City, Maharashtra, India · On-site
+              - list [ref=f1e410]:
+                - listitem [ref=f1e411]: Automated 153 Veeva Quality Cloud test cases, expanding regression coverage and reducing repetitive manual validation.
+                - listitem [ref=f1e414]: Automated end-to-end Workday workflows using Java and Selenium for more repeatable enterprise application testing.
+                - listitem [ref=f1e417]: Developed and maintained CRAFT workflows, troubleshooting runtime issues and adapting automation to changing application behavior.
+                - listitem [ref=f1e420]: Contributed to Playwright-based automation and collaborated with QA and engineering stakeholders to improve test reliability.
+              - generic "Programmer Analyst Trainee skills" [ref=f1e423]:
+                - generic [ref=f1e424]: Leadership
+                - generic [ref=f1e425]: Regression testing
+                - generic [ref=f1e426]: Java
+                - generic [ref=f1e427]: Selenium
+                - generic [ref=f1e428]: Playwright
+          - listitem [ref=f1e429]:
+            - generic [aria-hidden] [ref=f1e430]: "03"
+            - generic [ref=f1e431]:
+              - generic [ref=f1e433]:
+                - paragraph [ref=f1e434]: April 2025 - July 2025
+                - heading "Programmer Analyst Trainee" [level=3] [ref=f1e435]
+                - paragraph [ref=f1e436]: Internship · Chennai, Tamil Nadu, India · On-site
+              - list [ref=f1e437]:
+                - listitem [ref=f1e438]: Completed intensive Quality Engineering and Automation training covering Java, Selenium WebDriver, and TestNG.
+                - listitem [ref=f1e441]: Developed automation scripts for complex web interfaces and cross-browser testing to improve consistency in data validation workflows.
+                - listitem [ref=f1e444]: Led a seven-member team during framework development and task execution, coordinating implementation and automation strategy.
+                - listitem [ref=f1e447]: Implemented robust XPath and CSS selector strategies for dynamic web elements.
+              - generic "Programmer Analyst Trainee skills" [ref=f1e450]:
+                - generic [ref=f1e451]: Leadership
+                - generic [ref=f1e452]: Data structures
+                - generic [ref=f1e453]: Java
+                - generic [ref=f1e454]: Selenium WebDriver
+                - generic [ref=f1e455]: TestNG
+    - generic [ref=f1e265]:
+      - generic [ref=f1e266]:
+        - paragraph [ref=f1e267]: Credentials
+        - heading "Evidence of the work." [level=2] [ref=f1e456]
+        - paragraph [ref=f1e457]: A concise record of certifications, recognition, and education. Credentials are kept distinct from training and challenges.
+      - generic [ref=f1e269]:
+        - generic [ref=f1e458]:
+          - paragraph [ref=f1e459]: Certifications & learning
+          - generic [ref=f1e460]:
+            - generic [ref=f1e461]:
+              - generic [ref=f1e462]:
+                - strong [ref=f1e463]: Claude Certified Architect – Foundations (CCA-F)
+                - generic [ref=f1e464]: Anthropic
+              - generic [ref=f1e465]: Certification
+            - generic [ref=f1e466]:
+              - generic [ref=f1e467]:
+                - strong [ref=f1e468]: AWS Certified AI Practitioner
+                - generic [ref=f1e469]: Amazon Web Services
+              - generic [ref=f1e470]: Certification
+            - generic [ref=f1e471]:
+              - generic [ref=f1e472]:
+                - strong [ref=f1e473]: AWS Certified Cloud Practitioner
+                - generic [ref=f1e474]: Amazon Web Services
+              - generic [ref=f1e475]: Certification
+            - generic [ref=f1e476]:
+              - generic [ref=f1e477]:
+                - strong [ref=f1e478]: Context Engineering Foundation
+                - generic [ref=f1e479]: Cognizant
+              - generic [ref=f1e480]: Training
+            - generic [ref=f1e481]:
+              - generic [ref=f1e482]:
+                - strong [ref=f1e483]: Cloud Computing
+                - generic [ref=f1e484]: IIT Kharagpur — NPTEL SWAYAM
+              - generic [ref=f1e485]: Elite+Silver
+            - generic [ref=f1e486]:
+              - generic [ref=f1e487]:
+                - strong [ref=f1e488]: API Fundamentals Student Expert
+                - generic [ref=f1e489]: Postman
+              - generic [ref=f1e490]: Badge
+            - generic [ref=f1e491]:
+              - generic [ref=f1e492]:
+                - strong [ref=f1e493]: API Bootcamp
+                - generic [ref=f1e494]: GeeksforGeeks
+              - generic [ref=f1e495]: Bootcamp
+            - generic [ref=f1e496]:
+              - generic [ref=f1e497]:
+                - strong [ref=f1e498]: Azure Fundamentals Challenge
+                - generic [ref=f1e499]: Microsoft Learn Student Ambassadors
+              - generic [ref=f1e500]: Challenge
+        - generic [ref=f1e501]:
+          - generic [ref=f1e502]:
+            - paragraph [ref=f1e503]: Recognition
+            - generic [ref=f1e504]:
+              - generic [ref=f1e505]:
+                - strong [ref=f1e506]: Amber Award
+                - generic [ref=f1e507]: Cognizant · August 2026
+              - generic [ref=f1e508]:
+                - strong [ref=f1e509]: Achiever Award
+                - generic [ref=f1e510]: Cognizant · May 2026
+              - generic [ref=f1e511]:
+                - strong [ref=f1e512]: The Coral Award
+                - generic [ref=f1e513]: Cognizant · November 2025
+              - generic [ref=f1e514]:
+                - strong [ref=f1e515]: Hacktoberfest 2024
+                - generic [ref=f1e516]: Four accepted contributions · 2024
+          - generic [ref=f1e517]:
+            - paragraph [ref=f1e518]: Education
+            - generic [ref=f1e519]:
+              - strong [ref=f1e520]: Vellore Institute of Technology Bhopal
+              - generic [ref=f1e521]: 2021–2025 · CGPA 8.19/10.0
+    - generic [ref=f1e276]:
+      - generic [ref=f1e522]:
+        - paragraph [ref=f1e523]: About
+        - heading "Curious about systems, serious about craft." [level=2] [ref=f1e524]
+      - generic [ref=f1e525]:
+        - paragraph [ref=f1e526]: I’m Kunj Maheshwari, a software engineer building AI-powered applications, backend systems, and reliable software through thoughtful engineering and automated testing.
+        - link "Download résumé" [ref=f1e527] [cursor=pointer]:
+          - /url: /Kunj-Maheshwari-Resume.txt
+    - generic [ref=f1e532]:
+      - paragraph [ref=f1e533]: Start a conversation
+      - heading [level=2] [ref=f1e534]:
+        - text: Have a useful problem
+        - emphasis [ref=f1e535]: worth solving?
+      - paragraph [ref=f1e536]: Whether you are building an AI product, improving a backend system, or making quality repeatable, I’d like to hear about it.
+      - link "kunjm@outlook.com" [ref=f1e537] [cursor=pointer]:
+        - /url: mailto:kunjm@outlook.com
+      - generic [ref=f1e541]:
+        - link "GitHub" [ref=f1e542] [cursor=pointer]:
+          - /url: https://github.com/KunjMaheshwari
+        - link "LinkedIn" [ref=f1e545] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/kunjm
+        - link "LeetCode" [ref=f1e550] [cursor=pointer]:
+          - /url: https://leetcode.com/u/kunjm/
+        - link "Medium" [ref=f1e551] [cursor=pointer]:
+          - /url: https://medium.com/@KunjMaheshwari
+        - link "Résumé" [ref=f1e552] [cursor=pointer]:
+          - /url: /Kunj-Maheshwari-Resume.txt
+  - contentinfo [ref=f1e298]:
+    - generic [ref=f1e299]: © 2026 Kunj Maheshwari
+    - generic [ref=f1e300]: AI systems · backend engineering · software quality
+    - link "Back to top ↑" [ref=f1e301] [cursor=pointer]:
+      - /url: "#home"
