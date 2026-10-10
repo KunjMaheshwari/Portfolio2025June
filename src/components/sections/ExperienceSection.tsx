@@ -120,7 +120,7 @@ export function ExperienceSection() {
                 <div className="relative flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/58 dark:text-black/54">Cognizant</p>
-                    <h3 className="mt-3 text-3xl font-semibold tracking-[-0.06em] sm:text-4xl">Programmer Analyst Trainee</h3>
+                    <h3 className="mt-3 text-3xl font-semibold tracking-[-0.06em] sm:text-4xl">Programmer Analyst</h3>
                     <p className="mt-3 max-w-xl text-sm leading-7 text-white/70 dark:text-black/68">
                       Delivering automation solutions, backend stability, and team-level execution with product-minded discipline.
                     </p>
