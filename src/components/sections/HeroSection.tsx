@@ -79,7 +79,7 @@ export function HeroSection() {
               className="mb-6 inline-flex items-center gap-2 rounded-full border border-stroke bg-surface/72 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-brand-blue shadow-[0_18px_50px_rgba(5,5,7,0.08)] backdrop-blur-2xl dark:border-white/10 dark:bg-white/8"
             >
               <FaStar aria-hidden="true" className="h-3.5 w-3.5" />
-              Apple-inspired portfolio landing
+              AI systems · backend architecture · automation
             </motion.p>
 
             <motion.p variants={itemVariants} className="text-sm font-semibold uppercase tracking-[0.32em] text-muted dark:text-white/48">
@@ -90,14 +90,15 @@ export function HeroSection() {
               variants={itemVariants}
               className="font-display mt-5 max-w-4xl text-balance text-6xl font-semibold tracking-[-0.08em] text-ink sm:text-7xl lg:text-[7rem] lg:leading-[0.9] dark:text-white"
             >
-              Building AI Applications, Automation Systems & Scalable Products
+              Building useful intelligence
+              <span className="block text-brand-blue">for the real world.</span>
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
               className="mt-6 max-w-2xl text-pretty text-lg font-medium leading-8 tracking-[-0.02em] text-muted sm:text-xl sm:leading-9 dark:text-white/72"
             >
-              {profile.role}. Programmer Analyst Trainee at Cognizant with experience in Full-Stack Development, AI Applications, Test Automation, and Cloud Technologies.
+              {profile.role}. I build AI-powered products, dependable backend systems, and automation frameworks that make complex work feel simple.
             </motion.p>
 
             <motion.div variants={itemVariants} className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">

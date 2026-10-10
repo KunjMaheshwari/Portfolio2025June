@@ -154,7 +154,7 @@ export function Navbar({ isDark, onThemeToggle }: NavbarProps) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.55, ease: [0.2, 0.8, 0.2, 1] }}
           className={cn(
-            'mx-auto flex max-w-7xl items-center justify-between rounded-full border px-3 py-2.5 backdrop-blur-2xl transition-all duration-500',
+            'mx-auto flex max-w-6xl items-center justify-between rounded-2xl border px-3 py-2.5 backdrop-blur-2xl transition-all duration-500',
             scrolled
               ? 'border-white/10 bg-white/74 shadow-[0_24px_80px_rgba(2,6,23,0.14)] dark:border-white/10 dark:bg-black/42'
               : 'border-white/10 bg-white/48 shadow-[0_18px_60px_rgba(2,6,23,0.08)] dark:bg-black/24',
@@ -166,7 +166,7 @@ export function Navbar({ isDark, onThemeToggle }: NavbarProps) {
             className="group flex min-h-10 items-center gap-3 rounded-full px-2 font-semibold tracking-[-0.01em] text-ink outline-none focus-visible:ring-2 focus-visible:ring-brand-blue dark:text-white"
             aria-label={`${profile.name} home`}
           >
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-ink text-xs text-white shadow-[0_16px_40px_rgba(5,5,7,0.22)] transition-transform group-hover:scale-105 dark:bg-white dark:text-black">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-ink text-xs text-white shadow-[0_16px_40px_rgba(5,5,7,0.22)] transition-transform group-hover:scale-105 dark:bg-white dark:text-black">
               KM
             </span>
             <span className="hidden sm:inline">{profile.name}</span>
