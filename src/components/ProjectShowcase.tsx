@@ -14,7 +14,7 @@ function ProjectVisual({ project, index }: ProjectShowcaseProps) {
     return (
       <div className={`project-visual project-visual-${index} ${dark ? 'project-visual-dark' : ''}`}>
         <div className="project-logo-frame">
-          <img src={project.visual.src} alt={project.visual.alt} />
+          <img src={project.visual.src} alt={project.visual.alt} loading="lazy" decoding="async" />
           <span>Verified repository asset</span>
         </div>
       </div>
@@ -57,8 +57,8 @@ export function ProjectShowcase({ project, index }: ProjectShowcaseProps) {
         </div>
         <div className="project-tags">{project.technologies.map((technology) => <span key={technology}>{technology}</span>)}</div>
         <div className="project-links">
-          <a href={project.githubUrl} target="_blank" rel="noreferrer">View on GitHub <FiGithub /></a>
-          {project.demoUrl ? <a href={project.demoUrl} target="_blank" rel="noreferrer">Live demo <FiArrowUpRight /></a> : null}
+          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">View on GitHub <FiGithub /></a>
+          {project.demoUrl ? <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">Live demo <FiArrowUpRight /></a> : null}
         </div>
       </motion.div>
       <motion.div initial={reduceMotion ? false : { opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, delay: 0.12 }}>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kunjmaheshwariportfoliowesbite.vercel.app/sitemap.xml

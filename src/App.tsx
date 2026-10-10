@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { FiArrowUpRight, FiCheck, FiGithub, FiLinkedin, FiMail, FiMenu, FiMoon, FiSun, FiX } from 'react-icons/fi';
 import { FaJava } from 'react-icons/fa';
-import { SiSelenium } from 'react-icons/si';
-import { experience, profile } from './data/portfolio';
+import { awards, certifications, education, engineeringSkillGroups, experience, profile } from './data/portfolio';
 import { projectCatalogue } from './data/projectCatalogue';
 import { MagneticButton } from './components/MagneticButton';
 import { ProjectShowcase } from './components/ProjectShowcase';
@@ -11,6 +10,7 @@ import { ProjectShowcase } from './components/ProjectShowcase';
 const navLinks = [
   { label: 'Work', href: '#work' },
   { label: 'Engineering', href: '#engineering' },
+  { label: 'Credentials', href: '#credentials' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -32,6 +32,17 @@ function Header({ isDark, onToggle }: { isDark: boolean; onToggle: () => void })
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') close();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [open]);
+
   return (
     <header className="site-header">
       <nav className="site-nav" aria-label="Primary navigation">
@@ -44,7 +55,7 @@ function Header({ isDark, onToggle }: { isDark: boolean; onToggle: () => void })
         </div>
         <div className="nav-actions">
           <ThemeToggle isDark={isDark} onToggle={onToggle} />
-          <button type="button" className="menu-button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((value) => !value)}>
+          <button type="button" className="menu-button" aria-label={open ? 'Close menu' : 'Open menu'} aria-controls="mobile-navigation" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
             {open ? <FiX /> : <FiMenu />}
           </button>
         </div>
@@ -52,6 +63,7 @@ function Header({ isDark, onToggle }: { isDark: boolean; onToggle: () => void })
       <AnimatePresence>
         {open ? (
           <motion.div
+            id="mobile-navigation"
             className="mobile-menu"
             initial={{ opacity: 0, y: -8, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -156,6 +168,14 @@ function App() {
                 </motion.article>
               ))}
             </div>
+            <div className="skill-groups">
+              {engineeringSkillGroups.map((group) => (
+                <div className="skill-group" key={group.title}>
+                  <p className="credential-label">{group.title}</p>
+                  <div className="skill-chips">{group.skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -181,12 +201,72 @@ function App() {
 
         <section id="experience" className="experience-section page-section">
           <div className="content-width experience-layout">
-            <SectionIntro eyebrow="Experience" title="Enterprise discipline, applied every day." copy="My current role is grounded in application testing and automation engineering—not a title inflated beyond the work." />
-            <article className="experience-card">
-              <div className="experience-heading"><div><p className="eyebrow">Aug 2025 — Present · Pune, Maharashtra</p><h3>{experience[0].title}</h3><p className="company">{experience[0].company}</p></div><div className="experience-icon"><FaJava /></div></div>
-              <ul>{experience[0].bullets.map((bullet) => <li key={bullet}><FiCheck />{bullet}</li>)}</ul>
-              <div className="experience-tools"><span><FaJava /> Java</span><span><SiSelenium /> Selenium</span><span>TestNG</span><span>Playwright</span><span>JDBC</span></div>
-            </article>
+            <SectionIntro eyebrow="Experience" title="Enterprise discipline, applied every day." copy="A progression through quality engineering and automation at Cognizant, from internship foundations to enterprise application automation." />
+            <div className="experience-timeline" aria-label="Cognizant experience timeline">
+              <div className="experience-company-heading">
+                <span className="eyebrow">Cognizant · 2025 — Present</span>
+                <span className="experience-company-line" aria-hidden="true" />
+              </div>
+              <ol className="experience-list">
+                {experience.map((role, index) => (
+                  <motion.li
+                    className={`experience-entry ${index === 0 ? 'experience-entry-current' : ''}`}
+                    key={`${role.title}-${role.period}`}
+                    initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.55, delay: index * 0.08 }}
+                  >
+                    <span className="experience-marker" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                    <div className="experience-entry-content">
+                      <div className="experience-entry-heading">
+                        <div>
+                          <p className="eyebrow">{role.period}</p>
+                          <h3>{role.title}</h3>
+                          <p className="experience-meta">{role.employment} · {role.location} · {role.workMode}</p>
+                        </div>
+                        {index === 0 ? <div className="experience-icon" aria-hidden="true"><FaJava /></div> : null}
+                      </div>
+                      <ul>
+                        {role.bullets.map((bullet) => <li key={bullet}><FiCheck aria-hidden="true" />{bullet}</li>)}
+                      </ul>
+                      <div className="experience-tools" aria-label={`${role.title} skills`}>
+                        {role.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                      </div>
+                    </div>
+                  </motion.li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section id="credentials" className="credentials-section page-section">
+          <div className="content-width credentials-layout">
+            <SectionIntro eyebrow="Credentials" title="Evidence of the work." copy="A concise record of certifications, recognition, and education. Credentials are kept distinct from training and challenges." />
+            <div className="credentials-content">
+              <div className="credential-group">
+                <p className="credential-label">Certifications & learning</p>
+                <div className="credential-list">
+                  {certifications.map((credential) => (
+                    <div className="credential-item" key={credential.title}>
+                      <div><strong>{credential.title}</strong><span>{credential.issuer}</span></div>
+                      <small>{credential.badge}</small>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="credential-columns">
+                <div className="credential-group">
+                  <p className="credential-label">Recognition</p>
+                  <div className="award-list">{awards.map((award) => <div className="award-item" key={award.title}><strong>{award.title}</strong><span>{award.issuer} · {award.period}</span></div>)}</div>
+                </div>
+                <div className="credential-group">
+                  <p className="credential-label">Education</p>
+                  <div className="education-item"><strong>{education[0].school}</strong><span>2021–2025 · {education[0].detail}</span></div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -195,7 +275,7 @@ function App() {
         </section>
 
         <section id="contact" className="contact-section page-section">
-          <div className="content-width contact-inner"><p className="eyebrow">Start a conversation</p><h2>Have a useful problem<br /><em>worth solving?</em></h2><p>Whether you are building an AI product, improving a backend system, or making quality repeatable, I’d like to hear about it.</p><a className="contact-email" href={`mailto:${profile.email}`}>{profile.email} <FiArrowUpRight /></a><div className="contact-links"><a href={profile.github} target="_blank" rel="noreferrer"><FiGithub /> GitHub</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><FiLinkedin /> LinkedIn</a><a href={profile.resume} download><FiMail /> Résumé</a></div></div>
+          <div className="content-width contact-inner"><p className="eyebrow">Start a conversation</p><h2>Have a useful problem<br /><em>worth solving?</em></h2><p>Whether you are building an AI product, improving a backend system, or making quality repeatable, I’d like to hear about it.</p><a className="contact-email" href={`mailto:${profile.email}`}>{profile.email} <FiArrowUpRight /></a><div className="contact-links"><a href={profile.github} target="_blank" rel="noopener noreferrer"><FiGithub /> GitHub</a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><FiLinkedin /> LinkedIn</a><a href={profile.leetcode} target="_blank" rel="noopener noreferrer">LeetCode</a><a href={profile.medium} target="_blank" rel="noopener noreferrer">Medium</a><a href={profile.resume} download><FiMail /> Résumé</a></div></div>
         </section>
       </main>
       <footer className="site-footer"><span>© 2026 Kunj Maheshwari</span><span>AI systems · backend engineering · software quality</span><a href="#home">Back to top ↑</a></footer>

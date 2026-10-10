@@ -7,7 +7,6 @@ import {
   FaReact,
 } from 'react-icons/fa';
 import {
-  SiCoursera,
   SiExpress,
   SiFramer,
   SiJavascript,
@@ -29,10 +28,12 @@ export const profile = {
   githubUsername: 'KunjMaheshwari',
   leetcodeUsername: 'kunjmaheshwari',
   linkedin: 'https://www.linkedin.com/in/kunjm',
+  leetcode: 'https://leetcode.com/u/kunjm/',
+  medium: 'https://medium.com/@KunjMaheshwari',
   resume: '/Kunj-Maheshwari-Resume.txt',
   headline: 'Building AI Applications, Automation Systems & Scalable Products',
   summary:
-    'I am a Computer Science graduate from VIT Bhopal and a Programmer Analyst Trainee at Cognizant. My work sits at the intersection of enterprise Java, full-stack product engineering, automation, and clear user experience. I care about clean architecture, measured performance, and interfaces that feel calm under pressure.',
+    'I’m Kunj Maheshwari, a software engineer building AI-powered applications, backend systems, and reliable software through thoughtful engineering and automated testing.',
   signal: ['Java', 'MERN', 'Automation', 'AWS Cloud', 'Product Engineering'],
 };
 
@@ -57,15 +58,48 @@ export const metrics = [
 
 export const experience = [
   {
+    title: 'Programmer Analyst',
+    company: 'Cognizant',
+    employment: 'Full-time',
+    period: 'August 2026 - Present',
+    location: 'Pune City, Maharashtra, India',
+    workMode: 'On-site',
+    tags: ['CRAFT', 'Selenium WebDriver', 'Playwright', 'Java', 'Jenkins'],
+    bullets: [
+      'Develop and maintain Java-based automation solutions for Oracle EPM applications including EDMCS, EPBCS, FCCS, PCMCS, and NR using Selenium WebDriver, Playwright, and CRAFT.',
+      'Design reusable workflows with Page Object Model, data-driven testing, explicit waits, and structured exception handling for maintainable regression coverage.',
+      'Enhance framework components and automation infrastructure, troubleshoot enterprise workflows, and adapt solutions to changing application behavior.',
+      'Work with Git, Maven, and Jenkins in automation development and CI/CD workflows while collaborating with QA and engineering stakeholders.',
+    ],
+  },
+  {
     title: 'Programmer Analyst Trainee',
     company: 'Cognizant',
-    period: 'Aug 2025 - Present',
-    location: 'Pune, Maharashtra',
-    tags: ['Leadership', 'Selenium', 'Java', 'JDBC'],
+    employment: 'Full-time',
+    period: 'August 2025 - August 2026',
+    location: 'Pune City, Maharashtra, India',
+    workMode: 'On-site',
+    tags: ['Leadership', 'Regression testing', 'Java', 'Selenium', 'Playwright'],
     bullets: [
-      'Led a team of 6 engineers to deliver automation workflows with clear ownership and execution discipline.',
-      'Built Selenium automation frameworks and delivered automation solutions that reached 100% execution success.',
-      'Applied strong Java and JDBC expertise to stabilize backend flows and improve delivery quality.',
+      'Automated 153 Veeva Quality Cloud test cases, expanding regression coverage and reducing repetitive manual validation.',
+      'Automated end-to-end Workday workflows using Java and Selenium for more repeatable enterprise application testing.',
+      'Developed and maintained CRAFT workflows, troubleshooting runtime issues and adapting automation to changing application behavior.',
+      'Contributed to Playwright-based automation and collaborated with QA and engineering stakeholders to improve test reliability.',
+    ],
+  },
+  {
+    title: 'Programmer Analyst Trainee',
+    company: 'Cognizant',
+    employment: 'Internship',
+    period: 'April 2025 - July 2025',
+    location: 'Chennai, Tamil Nadu, India',
+    workMode: 'On-site',
+    tags: ['Leadership', 'Data structures', 'Java', 'Selenium WebDriver', 'TestNG'],
+    bullets: [
+      'Completed intensive Quality Engineering and Automation training covering Java, Selenium WebDriver, and TestNG.',
+      'Developed automation scripts for complex web interfaces and cross-browser testing to improve consistency in data validation workflows.',
+      'Led a seven-member team during framework development and task execution, coordinating implementation and automation strategy.',
+      'Implemented robust XPath and CSS selector strategies for dynamic web elements.',
     ],
   },
 ];
@@ -168,32 +202,90 @@ export const skills = [
 
 export const certifications = [
   {
+    title: 'Claude Certified Architect – Foundations (CCA-F)',
+    issuer: 'Anthropic',
+    verificationLink: '',
+    icon: FaAws,
+    badge: 'Certification',
+  },
+  {
+    title: 'AWS Certified AI Practitioner',
+    issuer: 'Amazon Web Services',
+    verificationLink: '',
+    icon: FaAws,
+    badge: 'Certification',
+  },
+  {
     title: 'AWS Certified Cloud Practitioner',
     issuer: 'Amazon Web Services',
     verificationLink: 'https://drive.google.com/file/d/1VHI9H8izuWi6Du2K7tm89QFF_ekC13vy/view',
     icon: FaAws,
-    badge: 'Cloud',
+    badge: 'Certification',
   },
   {
-    title: 'Google IT Support Professional Certificate',
-    issuer: 'Coursera',
-    verificationLink: 'https://www.coursera.org/account/accomplishments/professional-cert/MP6T6Y6ZC2CE?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=prof',
-    icon: SiCoursera,
-    badge: 'IT Support',
-  },
-  {
-    title: 'Claude Certified Architect Foundations',
-    issuer: 'Anthropic',
-    verificationLink: '',
-    icon: FaAws,
-    badge: 'AI Systems',
-  },
-  {
-    title: 'Context Engineering Certification',
-    issuer: 'Modern AI Practice',
+    title: 'Context Engineering Foundation',
+    issuer: 'Cognizant',
     verificationLink: '',
     icon: SiFramer,
-    badge: 'Prompt Systems',
+    badge: 'Training',
+  },
+  {
+    title: 'Cloud Computing',
+    issuer: 'IIT Kharagpur — NPTEL SWAYAM',
+    verificationLink: '',
+    icon: FaAws,
+    badge: 'Elite+Silver',
+  },
+  {
+    title: 'API Fundamentals Student Expert',
+    issuer: 'Postman',
+    verificationLink: '',
+    icon: SiFramer,
+    badge: 'Badge',
+  },
+  {
+    title: 'API Bootcamp',
+    issuer: 'GeeksforGeeks',
+    verificationLink: '',
+    icon: SiFramer,
+    badge: 'Bootcamp',
+  },
+  {
+    title: 'Azure Fundamentals Challenge',
+    issuer: 'Microsoft Learn Student Ambassadors',
+    verificationLink: '',
+    icon: FaAws,
+    badge: 'Challenge',
+  },
+];
+
+export const awards = [
+  { title: 'Amber Award', issuer: 'Cognizant', period: 'August 2026' },
+  { title: 'Achiever Award', issuer: 'Cognizant', period: 'May 2026' },
+  { title: 'The Coral Award', issuer: 'Cognizant', period: 'November 2025' },
+  { title: 'Hacktoberfest 2024', issuer: 'Four accepted contributions', period: '2024' },
+];
+
+export const engineeringSkillGroups = [
+  {
+    title: 'AI engineering',
+    skills: ['LLM integration', 'Generative AI applications', 'Prompt & context engineering', 'AI agents', 'Google Gemini', 'OpenRouter'],
+  },
+  {
+    title: 'Backend development',
+    skills: ['JavaScript', 'Node.js', 'Express.js', 'REST APIs', 'PostgreSQL', 'MongoDB', 'Prisma ORM', 'Java & SQL'],
+  },
+  {
+    title: 'Frontend',
+    skills: ['React', 'Next.js', 'HTML', 'CSS', 'Tailwind CSS'],
+  },
+  {
+    title: 'Automation & quality',
+    skills: ['Java', 'Selenium WebDriver', 'TestNG', 'Playwright', 'Cucumber', 'Regression testing'],
+  },
+  {
+    title: 'Cloud & tools',
+    skills: ['AWS fundamentals', 'Git & GitHub', 'Docker', 'CI/CD workflows'],
   },
 ];
 
