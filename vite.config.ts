@@ -11,8 +11,7 @@ export default defineConfig({
         manualChunks: {
           react: ['react', 'react-dom'],
           motion: ['framer-motion', 'gsap', 'lenis'],
-          three: ['three'],
-          icons: ['react-icons'],
+          icons: ['react-icons', 'lucide-react'],
         },
       },
     },
